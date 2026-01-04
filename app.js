@@ -2,6 +2,7 @@ const express= require("express");
 const app = express();
 const mongoose = require("mongoose");
 const Listing = require("./models/listing");
+const Review= require("./models/review.js")
 const path = require("path");
 const methodOverride= require("method-override");
 const ejsMate= require("ejs-mate");
@@ -105,6 +106,23 @@ app.delete("/listings/:id",wrapAsync (async(req,res)=>{
 }));
 
 
+// review route  -- Post
+
+app.post("/listings/:id/reviews", async(req,res)=>{
+    let newListing= await Listing.findById(req.params.id);
+    let newReview=  new Review(req.body.reviews);
+    await newReview.save();
+    Listing.reviews.push(newReview);
+
+    
+    // await newReview.save();
+    await Listing.save();
+
+    console.log("review saved!!");
+    res.send("review saved");
+
+});
+
 // error handling
 
 app.use((req, res, next) => {
@@ -114,8 +132,9 @@ app.use((req, res, next) => {
 app.use((err,req,res,next)=>{
     let {statusCode=500,message="Something went Wrong!!"}=err;
     res.render("error.ejs",{message});
-    // res.status(statusCode).send(message);
-})
+    
+});
+
 
 
 app.listen(8080,()=>{
