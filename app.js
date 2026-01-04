@@ -109,14 +109,14 @@ app.delete("/listings/:id",wrapAsync (async(req,res)=>{
 // review route  -- Post
 
 app.post("/listings/:id/reviews", async(req,res)=>{
-    let newListing= await Listing.findById(req.params.id);
+    let listing= await Listing.findById(req.params.id);
     let newReview=  new Review(req.body.reviews);
-    await newReview.save();
-    Listing.reviews.push(newReview);
 
-    
-    // await newReview.save();
-    await Listing.save();
+    await newReview.save();
+
+    listing.reviews.push(newReview);
+
+    await listing.save();
 
     console.log("review saved!!");
     res.send("review saved");
