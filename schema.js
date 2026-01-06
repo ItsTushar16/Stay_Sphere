@@ -8,5 +8,15 @@ module.exports.listingSchema =Joi.object({
         price:Joi.number().required().min(0),
         country:Joi.string().required(),
         location:Joi.string().required(),
-    })
-}).required();
+    }).required(),
+});
+
+// For Review Schema
+
+module.exports.reviewSchema=Joi.object({
+    reviews:Joi.object({
+        comment: Joi.string().required(),
+        rating: Joi.number().required().min(1).max(5),
+    }).required(),
+});
+
