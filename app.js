@@ -1,19 +1,42 @@
 const express= require("express");
 const app = express();
 const mongoose = require("mongoose");
-const Listing = require("./models/listing");
-const Review= require("./models/review.js");
 const path = require("path");
 const methodOverride= require("method-override");
 const ejsMate= require("ejs-mate");
-const wrapAsync = require("./utils/wrapAsync");
 const ExpressError = require("./utils/ExpressError.js");
-const {listingSchema}= require("./schema.js");
-const {reviewSchema} = require("./schema.js");
+const session=require("express-session");
+const flash=require("connect-flash");
 
 const listings=require("./routes/listing.js");
 const reviews= require("./routes/review.js");
 
+
+const sessionOption={
+    secret:"ThisIsScreatMsg-StaySphere",
+    resave:false,
+    saveUninitailzed:true,
+    cokkie:{
+        expires:Date.now()+ 7*24*60*60*1000,
+        maxAge:7*24*60*60*1000,
+        httpOnly:true,
+    }
+
+}
+
+
+app.use(session(sessionOption));
+app.use(flash());
+
+app.use((req,res,next)=>{
+    res.locals.success= req.flash('success');
+    next();
+});
+
+app.use((req,res,next)=>{
+    res.locals.error= req.flash("error");
+    next();
+});
 
 
 main().then(()=>{
