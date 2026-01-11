@@ -21,6 +21,9 @@
     "mongoose": "^8.18.1",
     "next": "^16.0.8",
     "npm": "^11.6.4",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^9.0.1",
     "path-to-regexp": "^6.2.1"
   }
 }
