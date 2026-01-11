@@ -9,10 +9,11 @@ const session=require("express-session");
 const flash=require("connect-flash");
 const passport=require("passport");
 const LocalStrategy=require("passport-local");
-
 const User=require("./models/user.js");
+
 const listings=require("./routes/listing.js");
 const reviews= require("./routes/review.js");
+const user= require("./routes/user.js");
 
 main().then(()=>{
     console.log("connected to DB");
@@ -70,19 +71,10 @@ app.use((req,res,next)=>{
     next();
 });
 
-app.get("/demouser" ,async (req,res)=>{
-    let fakeuser= new User({
-        email:"fakeuser@staySphere.com",
-        username:"User1"
-    });
-    let regUser= await  User.register(fakeuser,"LoveU");
-    res.send(regUser);
-
-});
-
 // Express Router
 app.use("/",listings);
 app.use("/listings/:id/reviews", reviews);
+app.use("/",user);
 
 
 // error handling
