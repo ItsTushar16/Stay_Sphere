@@ -20,6 +20,8 @@ const listings=require("./routes/listing.js");
 const reviews= require("./routes/review.js");
 const user= require("./routes/user.js");
 
+const port = process.env.PORT || 8080;
+
 main().then(()=>{
     console.log("connected to DB");
 }).catch((err)=>{
@@ -106,6 +108,6 @@ app.use((err,req,res,next)=>{
 });
 
 
-app.listen(8080,()=>{
-    console.log("server wrking on port:8080");
+app.listen(port, () => {
+    console.log(`server working on port:${port}`);
 });
