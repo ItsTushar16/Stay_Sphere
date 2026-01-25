@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": "24.6.0"
+  },
   "name": "major_project",
   "version": "1.0.0",
   "description": "",
@@ -11,7 +14,9 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "cloudinary": "^2.9.0",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^6.0.0",
     "dotenv": "^17.2.3",
     "ejs": "^3.1.10",
     "ejs-mate": "^4.0.0",
@@ -20,6 +25,8 @@
     "joi": "^18.0.2",
     "method-override": "^3.0.0",
     "mongoose": "^8.18.1",
+    "multer": "^2.0.2",
+    "multer-storage-cloudinary": "^4.0.0",
     "next": "^16.0.8",
     "npm": "^11.6.4",
     "passport": "^0.7.0",

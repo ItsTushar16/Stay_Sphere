@@ -114,3 +114,50 @@ body{
     padding-left: 0;
     padding-right: 0;
 }
+
+/* style for index.ejs (offer bar)*/
+
+  .announcement-bar {
+  background-color: #ffffff;
+  font-size: 14px;
+  padding: 10px 0;
+  overflow: hidden;
+}
+
+.announcement-text {
+  display: inline-block;
+  white-space: nowrap;
+  animation: slide 18s linear infinite;
+  color: #222;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.announcement-text:hover {
+  animation-play-state: paused;
+}
+
+/* for index.ejs (filter-- category) */
+
+#filters{
+    display: flex;
+    flex-wrap: wrap;
+   margin-left: 3rem;
+}
+.filter{
+    text-align: center;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    text-decoration: none;
+    
+}
+.filter:hover{
+    text-decoration: underline;
+    text-decoration: #222;
+}

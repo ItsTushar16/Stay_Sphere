@@ -1,6 +1,53 @@
 <% layout("/layouts/boilerplate") %> 
+
 <body>
-    <h2>All Listings</h2>
+    <div class="announcement-bar border-bottom mt-2">
+        <div class="container text-center">
+            <span class="announcement-text">
+            Flat: 50% on first booking || Flexible cancellation available || 
+            Thoughtfully curated stays, worldwide || 
+            Travel plans changed? Many stays offer free cancellation
+            </span>
+        </div>
+    </div>
+    <div id="filters" class="category-bar d-flex flex-nowrap overflow-auto">
+      <div class="filter">
+        <a href="/listings/filter/home" class="nav-link"><i class="fa-solid fa-house"></i><p class="d-none d-md-block">Home</p></a>
+      </div>
+      <div class="filter">
+        <a href="/listings/filter/hostel" class="nav-link"><i class="fa-solid fa-people-roof"></i><p class="d-none d-md-block">Hostel</p></a>
+      </div>
+      <div class="filter">
+        <a href="/listings/filter/room" class="nav-link" ><i class="fa-solid fa-bed"></i><p class="d-none d-md-block">Room</p></a>
+      </div>
+      <div class="filter">
+        <a href="/listings/filter/villa" class="nav-link"><i class="fa-solid fa-umbrella-beach"></i><p class="d-none d-md-block">Villa</p></a>
+      </div>
+      <div class="filter">
+        <a href="/listings/filter/flat" class="nav-link"><i class="fa-solid fa-building"></i><p class="d-none d-md-block">Flat</p></a>
+      </div>
+      <div class="filter">
+        <a href="/listings/filter/mountains" class="nav-link"><i class="fa-solid fa-mountain-city"></i><p class="d-none d-md-block">Mountains</p></a>
+      </div>
+      <div class="filter">
+        <a href="/listings/filter/camping" class="nav-link"><i class="fa-solid fa-campground"></i><p class="d-none d-md-block">Camping</p></a>
+      </div>
+      <div class="filter">
+        <a href="/listings/filter/farms" class="nav-link"><i class="fa-solid fa-tractor"></i><p class="d-none d-md-block">Farms</p></a>
+      </div>
+      <div class="filter">
+        <a href="/listings/filter/island" class="nav-link"><i class="fa-solid fa-umbrella-beach"></i><p class="d-none d-md-block">Island</p></a>
+      </div>
+      <div class="filter">
+        <a href="/listings/filter/desert" class="nav-link"><i class="fa-regular fa-sun"></i><p class="d-none d-md-block">Desert</p></a>
+      </div>
+      <div class="filter">
+        <a href="/listings/filter/apartment" class="nav-link"><i class="fa-solid fa-building-user"></i><p class="d-none d-md-block">Apartment</p></a>
+      </div>
+      <div class="filter">
+        <a href="/listings/filter/iconicCity" class="nav-link"><i class="fa-solid fa-landmark"></i><p class="d-none d-md-block">Iconic Cities</p></a>
+      </div>
+    </div>
     
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
         <% for(let listing of allListings){ %>

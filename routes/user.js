@@ -14,7 +14,16 @@ router.get("/login" ,userController.loginForm);
 router.post('/login', saveRedirectUrl,
 passport.authenticate("local", { failureRedirect: '/login',failureFlash:true }),userController.login);
 
+
 // logout
 router.get("/logout",userController.logout);
+
+// privacy and terms
+router.get("/privacy",(req,res)=>{
+    res.render("user/privacy.ejs");
+});
+router.get("/terms",(req,res)=>{
+    res.render("user/term.ejs");
+});
 
 module.exports= router;

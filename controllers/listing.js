@@ -29,9 +29,14 @@ module.exports.showListing=async (req,res)=>{
 
 }
 
+// create listing -- add new listing
 module.exports.addNewListing=async (req,res)=>{
+        let url = req.file.path;
+        let filename = req.file.filename;
+
         const newListing= new Listing(req.body.listing);
         newListing.owner=req.user._id;
+        newListing.image={url,filename};
         await newListing.save();
         console.log("Added");
         req.flash('success','New Listing Created!!!');
@@ -45,7 +50,10 @@ module.exports.editForm=async(req,res)=>{
         req.flash("error","Listing you requested for does not exist");
         return res.redirect("/listings");
     }
-    res.render("listings/edit.ejs",{listing});
+    let category=listing.category;
+    let originalImageUrl=listing.image.url;
+    originalImageUrl= originalImageUrl.replace("/upload","/upload/h_300,w_300");
+    res.render("listings/edit.ejs",{listing,originalImageUrl,category});
 
 }
 
@@ -54,9 +62,51 @@ module.exports.updateListing=async (req,res)=>{
         throw new ExpressError(400,"Send valid data for listing")
     } 
     let{id}=req.params;
-    await Listing.findByIdAndUpdate(id,{...req.body.listing});
+    let listing= await Listing.findByIdAndUpdate(id,{...req.body.listing});
+
+    if(typeof req.file!== "undefined"){
+        let url = req.file.path;
+        let filename = req.file.filename;
+        listing.image = {url,filename};
+        await listing.save();
+    }
     req.flash('success',' Listing Updated!!!');
     res.redirect('/listings');
+}
+
+// category wise listing showing
+module.exports.filterListing=async (req, res) => {
+  const { category } = req.params;
+  const allListings = await Listing.find({ category });
+  if(allListings.length===0){
+    req.flash("error","No Listing under this category");
+    return res.redirect("/listings");
+  }
+  res.render("listings/index", { allListings, category });
+}
+
+// search
+module.exports.search=async (req, res) => {
+  const query = req.query.q; 
+
+  if (!query) {
+    return res.redirect('/listings'); 
+  }
+
+  try {
+    const results = await Listing.find({
+      $or: [
+        { title: new RegExp(query, 'i') },
+        { location: new RegExp(query, 'i') },
+        { country: new RegExp(query, 'i') }
+      ]
+    });
+
+    res.render('listings/index', { allListings: results, q: query });
+  } catch (err) {
+    console.log(err);
+    res.redirect('/listings');
+  }
 }
 
 module.exports.destroy=async(req,res)=>{

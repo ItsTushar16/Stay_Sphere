@@ -4,7 +4,7 @@
 <div class="col-8 offset-2">
     
     <h2>Create a new Listing</h2><br>
-    <form action="/listings" method="post" novalidate class="needs-validation" enctype="application/x-www-form-urlencoded">
+    <form action="/listings" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" name="listing[title]" placeholder="enter title" class="form-control" required/>
@@ -17,8 +17,29 @@
             <div class="invalid-feedback">Give a short description</div>
         </div>
         <div class="mb-3">
+            <label class="form-label" for="category">Category</label>
+            <select name="listing[category]" class="form-select" required>
+                <option value="">Select category</option>
+                <option value="hostel">Hostel</option>
+                <option value="room">Room</option>
+                <option value="mountains">Mountains</option>
+                <option value="Castle">Castle</option>
+                <option value="camping">Camping</option>
+                <option value="villa">Villa</option>
+                <option value="apartment">Apartment</option>
+                <option value="home">Home</option>
+                <option value="flat">Flat</option>
+                <option value="farms">Farms</option>
+                <option value="lake">Lake</option>
+                <option value="desert">Desert</option>
+                <option value="island">Island</option>
+                <option value="iconicCity">Iconic City</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
             <label for="image" class="form-label">Upload Listing Image </label>
-            <input type="file" name="listing[image]"  class="form-control">
+            <input type="file" name="listing[image]"  class="form-control" required>
         </div>
         <div class="mb-3">
             <label for="price" class="form-label">Price</label>
