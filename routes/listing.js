@@ -34,7 +34,7 @@ const validatingUpdatedListing= (req,res,next)=>{
 }
 
 // home route
-app.get("/", (req, res) => {
+router.get("/", (req, res) => {
   res.redirect("/listings");
 });
 
