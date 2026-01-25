@@ -33,6 +33,12 @@ const validatingUpdatedListing= (req,res,next)=>{
         }
 }
 
+// home route
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
+
+
 // index route
 router.get("/listings",wrapAsync(listingController.index));
 
