@@ -1,5 +1,5 @@
 # StaySphere 🏡  
-*A full-stack property listing platform inspired by Airbnb*
+*A full-stack property listing platform.*
 
 StaySphere is a full-stack web application built completely from scratch. It allows users to explore, list, and review accommodations across different categories, with secure authentication, image uploads, search, and filtering functionality.
 
